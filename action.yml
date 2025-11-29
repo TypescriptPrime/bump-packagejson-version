@@ -21,7 +21,7 @@ runs:
         npm run ci -- --tag "$TAG" --package-json-dir-path "$PACKAGE_JSON_DIR_PATH" --workspace-path "$WORKSPACE_PATH"
       shell: bash
       env:
-        TAG: ${{ github.ref_name }}
+        TAG: ${{ github.event.release.tag_name }}
         PACKAGE_JSON_DIR_PATH: ${{ inputs.package-json-dir-path }}
         WORKSPACE_PATH: ${{ github.workspace }}
       if: github.ref_type == 'tag'
