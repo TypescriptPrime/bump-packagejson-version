@@ -1,6 +1,12 @@
-name: 'Purge cache existing in jsDelivr Network'
+name: 'Dump-packagejson-version'
 author: 'PiQuark6046 and contributors'
-description: 'Clone your npm package into jsDelivr Network to enhance transmission speed'
+description: 'Dump the version of package.json to the version defined in the tags connected to the triggered release'
+
+inputs:
+  package-json-path:
+    description: 'A single package.json file to dump the version to'
+    required: false
+    default: 'package.json'
 
 runs:
   using: 'composite'
@@ -10,14 +16,13 @@ runs:
         npm i
       shell: bash
       working-directory: ${{ github.action_path }}
-    - name: Dump version of package.json to version defined in triggered Release
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-        CI_WORKSPACE_PATH: ${{ github.workspace }}
-        CI_ACTION_PATH: ${{ github.action_path }}
-        REPO: ${{ github.repository }}
-        EVENT_PAYLOAD_PATH: ${{ github.event_path }}
+    - name: Dump version of package.json to version defined in tags connected to triggered release
       run: |
-        npm run ci -- --GHToken "$GITHUB_TOKEN" --CI-Workspace-Path "$CI_WORKSPACE_PATH" --CI-Action-Path "$CI_ACTION_PATH" --
+        npm run ci -- --tag "$TAG" --package-json-path "$PACKAGE_JSON_PATH" --workspace-path "$WORKSPACE_PATH"
       shell: bash
+      env:
+        TAG: ${{ github.ref_name }}
+        PACKAGE_JSON_PATH: ${{ inputs.package-json-path }}
+        WORKSPACE_PATH: ${{ github.workspace }}
+      if: github.ref_type == 'tag'
       working-directory: ${{ github.action_path }}
