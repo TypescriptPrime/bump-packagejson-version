@@ -7,6 +7,21 @@
     "lint": "eslint . --ext .ts",
     "test": "ava"
   },
+  "ava": {
+    "files": [
+      "tests/**/*.test.ts"
+    ],
+    "nodeArguments": [
+      "--import=tsx"
+    ],
+    "workerThreads": false,
+    "typescript": {
+      "rewritePaths": {
+        "@/": "./sources/"
+      },
+      "compile": false
+    }
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "@npmcli/package-json": "^7.0.4",
