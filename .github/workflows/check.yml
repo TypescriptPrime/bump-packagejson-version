@@ -16,7 +16,7 @@ jobs:
       pull-requests: read
     steps:
       - name: Set up NodeJS
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
       - name: Checkout repository
@@ -34,7 +34,7 @@ jobs:
       pull-requests: read
     steps:
       - name: Set up NodeJS
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
       - name: Checkout repository
