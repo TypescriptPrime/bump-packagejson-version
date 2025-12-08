@@ -1,7 +1,7 @@
 {
   "name": "@typescriptprime/bump-packagejson-version",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "ci": "tsx index.ts",
     "lint": "eslint . --ext .ts",
