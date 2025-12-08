@@ -1,6 +1,6 @@
 name: 'Dump-packagejson-version'
 author: 'PiQuark6046 and contributors'
-description: 'Dump the version of package.json to the version defined in the tags connected to the triggered release'
+description: 'Dump the version of package.json to the version defined in the tags connected to the triggered release or push.'
 
 inputs:
   package-json-dir-path:
@@ -18,10 +18,10 @@ runs:
       working-directory: ${{ github.action_path }}
     - name: Dump version of package.json to version defined in tags connected to triggered release
       run: |
-        npm run ci -- --tag "$TAG" --package-json-dir-path "$PACKAGE_JSON_DIR_PATH" --workspace-path "$WORKSPACE_PATH"
+        npm run ci -- --ref "$REF" --package-json-dir-path "$PACKAGE_JSON_DIR_PATH" --workspace-path "$WORKSPACE_PATH"
       shell: bash
       env:
-        TAG: ${{ github.event.release.tag_name }}
+        REF: ${{ github.ref }}
         PACKAGE_JSON_DIR_PATH: ${{ inputs.package-json-dir-path }}
         WORKSPACE_PATH: ${{ github.workspace }}
       if: github.ref_type == 'tag'

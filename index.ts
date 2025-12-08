@@ -6,7 +6,7 @@ import PackageJson from '@npmcli/package-json'
 import * as Fs from 'node:fs'
 
 type TParameters = {
-  Tag: string,
+  Ref: string,
   PackageJsonDirPath: string
   WorkspacePath: string
 }
@@ -14,7 +14,7 @@ type TParameters = {
 let Parameters = (await Parsing.PostProcessing<TParameters>(Parsing.PreProcessing(Process.argv))).Options
 
 await Zod.strictObject({
-  Tag: Zod.stringFormat(Parameters.Tag, Value => Semver.valid(Value) !== null),
+  Tag: Zod.stringFormat(Parameters.Ref, Value => Value.startsWith('refs/tags/') && Semver.valid(Value.replaceAll(/^refs\/tags\//g, '')) !== null),
   WorkspacePath: Zod.stringFormat(Parameters.WorkspacePath, Value => Fs.existsSync(Value) && Fs.lstatSync(Value).isDirectory()),
   PackageJsonDirPath: Zod.stringFormat(Parameters.PackageJsonDirPath,
     async Value => Fs.existsSync(`${Parameters.WorkspacePath}${Value === '' ? '/package.json' : `/${Value}/package.json`}`)
@@ -23,6 +23,6 @@ await Zod.strictObject({
 
 let PackageJsonData = await PackageJson.load(`${Parameters.WorkspacePath}${Parameters.PackageJsonDirPath === '' ? '' : `/${Parameters.PackageJsonDirPath}`}`)
 PackageJsonData.update({
-  version: Semver.clean(Parameters.Tag)
+  version: Semver.clean(Parameters.Ref.replaceAll(/^refs\/tags\//g, ''))
 })
 await PackageJsonData.save()
