@@ -14,7 +14,7 @@ type TParameters = {
 let Parameters = (await Parsing.PostProcessing<TParameters>(Parsing.PreProcessing(Process.argv))).Options
 
 await Zod.strictObject({
-  Tag: Zod.stringFormat(Parameters.Ref, Value => Value.startsWith('refs/tags/') && Semver.valid(Value.replaceAll(/^refs\/tags\//g, '')) !== null),
+  Ref: Zod.stringFormat(Parameters.Ref, Value => Value.startsWith('refs/tags/') && Semver.valid(Value.replaceAll(/^refs\/tags\//g, '')) !== null),
   WorkspacePath: Zod.stringFormat(Parameters.WorkspacePath, Value => Fs.existsSync(Value) && Fs.lstatSync(Value).isDirectory()),
   PackageJsonDirPath: Zod.stringFormat(Parameters.PackageJsonDirPath,
     async Value => Fs.existsSync(`${Parameters.WorkspacePath}${Value === '' ? '/package.json' : `/${Value}/package.json`}`)
