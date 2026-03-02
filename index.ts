@@ -11,7 +11,7 @@ type TParameters = {
   WorkspacePath: string
 }
 
-let Parameters = (await Parsing.PostProcessing<TParameters>(Parsing.PreProcessing(Process.argv))).Options
+let Parameters = (await Parsing.ParseArgumentsAndOptions<TParameters>(Parsing.FilterArgumentsForOptions(Process.argv))).Options
 
 await Zod.strictObject({
   Ref: Zod.stringFormat(Parameters.Ref, Value => Value.startsWith('refs/tags/') && Semver.valid(Value.replaceAll(/^refs\/tags\//g, '')) !== null),
