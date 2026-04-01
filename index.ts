@@ -23,6 +23,6 @@ await Zod.strictObject({
 
 let PackageJsonData = await PackageJson.load(`${Parameters.WorkspacePath}${Parameters.PackageJsonDirPath === '' ? '' : `/${Parameters.PackageJsonDirPath}`}`)
 PackageJsonData.update({
-  version: Semver.clean(Parameters.Ref.replaceAll(/^refs\/tags\//g, ''))
+  version: Semver.clean(Parameters.Ref.replaceAll(/^refs\/tags\//g, ''))!
 })
 await PackageJsonData.save()

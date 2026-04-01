@@ -4,7 +4,7 @@
     "target": "ES2024",
     "moduleResolution": "NodeNext",
     "removeComments": false,
-    "alwaysStrict": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["node"]
   }
 }
