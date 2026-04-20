@@ -32,14 +32,14 @@
   },
   "devDependencies": {
     "@octokit/graphql": "^9.0.3",
-    "@types/node": "^24.12.0",
+    "@types/node": "^24.12.2",
     "@types/npmcli__package-json": "^4.0.4",
     "@types/semver": "^7.7.1",
-    "@typescript-eslint/eslint-plugin": "^8.58.0",
-    "@typescript-eslint/parser": "^8.58.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
     "ava": "^7.0.0",
-    "eslint": "^10.1.0",
-    "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.0"
+    "eslint": "^10.2.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.58.2"
   }
 }
