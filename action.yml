@@ -13,7 +13,7 @@ runs:
   steps:
     - name: Install npm packages
       run: |
-        npm i
+        pnpm i --no-lockfile
       shell: bash
       working-directory: ${{ github.action_path }}
     - name: Dump version of package.json to version defined in tags connected to triggered release

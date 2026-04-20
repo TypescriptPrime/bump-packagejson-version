@@ -4,6 +4,9 @@ A simple GitHub Action that updates a package.json `version` field based on the 
 
 The action is intended for workflows triggered by `release` events for stable releases and pre-releases or `push` event with an assigned tag.
 
+> [!WARNING]
+> Installation and configuration of pnpm is required.
+
 ---
 
 ## Key features
