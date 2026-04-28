@@ -37,7 +37,7 @@
     "@types/semver": "^7.7.1",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
-    "ava": "^7.0.0",
+    "ava": "^8.0.0",
     "eslint": "^10.2.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.58.2"
